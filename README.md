@@ -157,6 +157,7 @@ ollama list
 ```shell
 cd llm/glm4
 uv sync
+uv sync --extra quantization # 如果使用量化模型
 source .venv/bin/activate # Linux
 .venv\Scripts\Activate.ps1 # Windows
 cd ../../
@@ -170,6 +171,7 @@ cd llm/glm4
 conda create --name llm_glm4 python==3.11 --yes
 conda activate llm_glm4
 pip install -e .
+pip install -e ".[quantization]" # 如果使用量化模型
 cd ../../
 python starter.py llm
 ```
