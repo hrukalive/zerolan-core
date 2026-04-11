@@ -131,7 +131,8 @@ $env:HF_ENDPOINT = "https://hf-mirror.com"
 ```shell
 cd llm/ollama
 uv sync
-source .venv/bin/activate
+source .venv/bin/activate # Linux
+.venv\Scripts\Activate.ps1 # Windows
 cd ../../
 uv run starter.py llm
 ```
@@ -156,7 +157,8 @@ ollama list
 ```shell
 cd llm/glm4
 uv sync
-source .venv/bin/activate
+source .venv/bin/activate # Linux
+.venv\Scripts\Activate.ps1 # Windows
 cd ../../
 uv run starter.py llm
 ```
@@ -180,7 +182,8 @@ python starter.py llm
 ```shell
 cd llm/chatglm3
 uv sync
-source .venv/bin/activate
+source .venv/bin/activate # Linux
+.venv\Scripts\Activate.ps1 # Windows
 cd ../../
 uv run starter.py llm
 ```
@@ -205,7 +208,8 @@ python starter.py llm
 ```shell
 cd llm/qwen
 uv sync
-source .venv/bin/activate
+source .venv/bin/activate # Linux
+.venv\Scripts\Activate.ps1 # Windows
 cd ../../
 uv run starter.py llm
 ```
@@ -230,7 +234,8 @@ python starter.py llm
 ```shell
 cd llm/yi
 uv sync
-source .venv/bin/activate
+source .venv/bin/activate # Linux
+.venv\Scripts\Activate.ps1 # Windows
 cd ../../
 uv run starter.py llm
 ```
@@ -255,7 +260,8 @@ python starter.py llm
 ```shell
 cd llm/shisa
 uv sync
-source .venv/bin/activate
+source .venv/bin/activate # Linux
+.venv\Scripts\Activate.ps1 # Windows
 cd ../../
 uv run starter.py llm
 ```
@@ -280,7 +286,8 @@ python starter.py llm
 ```shell
 cd llm/deepseek
 uv sync
-source .venv/bin/activate
+source .venv/bin/activate # Linux
+.venv\Scripts\Activate.ps1 # Windows
 cd ../../
 uv run starter.py llm
 ```
@@ -362,7 +369,8 @@ EOF
 ```shell
 cd asr/paraformer
 uv sync
-source .venv/bin/activate
+source .venv/bin/activate # Linux
+.venv\Scripts\Activate.ps1 # Windows
 cd ../../
 uv run starter.py asr
 ```
@@ -387,7 +395,8 @@ python starter.py asr
 ```shell
 cd asr/kotoba_whisper_2
 uv sync
-source .venv/bin/activate
+source .venv/bin/activate # Linux
+.venv\Scripts\Activate.ps1 # Windows
 cd ../../
 uv run starter.py asr
 ```
@@ -465,7 +474,8 @@ python zerolan_api.py -a 127.0.0.1 -p 11004
 ```shell
 cd img_cap/blip
 uv sync
-source .venv/bin/activate
+source .venv/bin/activate # Linux
+.venv\Scripts\Activate.ps1 # Windows
 cd ../../
 uv run starter.py imgcap
 ```
@@ -516,7 +526,8 @@ EOF
 ```shell
 cd vid_cap/hitea
 uv sync
-source .venv/bin/activate
+source .venv/bin/activate # Linux
+.venv\Scripts\Activate.ps1 # Windows
 cd ../../
 uv run starter.py vidcap
 ```
@@ -569,7 +580,8 @@ EOF
 ```shell
 cd ocr/paddle
 uv sync
-source .venv/bin/activate
+source .venv/bin/activate # Linux
+.venv\Scripts\Activate.ps1 # Windows
 cd ../../
 uv run starter.py ocr
 ```
@@ -624,7 +636,8 @@ EOF
 ```shell
 cd vla/showui
 uv sync
-source .venv/bin/activate
+source .venv/bin/activate # Linux
+.venv\Scripts\Activate.ps1 # Windows
 cd ../../
 uv run starter.py vla --model showui
 ```
@@ -670,7 +683,8 @@ EOF
 ```shell
 cd database/milvus
 uv sync
-source .venv/bin/activate
+source .venv/bin/activate # Linux
+.venv\Scripts\Activate.ps1 # Windows
 cd ../../
 uv run starter.py vecdb
 
@@ -722,7 +736,8 @@ pymilvus.exceptions.MilvusException: <MilvusException: (code=100, message=Can no
 ```shell
 cd defense/deberta
 uv sync
-source .venv/bin/activate
+source .venv/bin/activate # Linux
+.venv\Scripts\Activate.ps1 # Windows
 cd ../../
 uv run starter.py defense
 ```
