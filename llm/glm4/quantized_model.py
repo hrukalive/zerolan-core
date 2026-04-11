@@ -26,6 +26,20 @@ class GLM4_9b_chat_GGUF(AbstractModel):
         self._max_length = config.max_length
         self._n_gpu_layers = config.n_gpu_layers    # -1 表示全部层卸载到 GPU，0 表示纯 CPU
         self._filename = config.filename
+        # NOTE:
+        # Disable Flash Attention to prevent GGML_ASSERT crashes with GLM-4-9B Q2_K quantization.
+        # 
+        # Root Cause: Flash Attention optimizations assume specific tensor stride patterns and 
+        # memory layouts that may not hold for heavily quantized models (Q2_K). GLM-4-9B's 
+        # architecture (GQA - Grouped Query Attention) combined with aggressive 2-bit quantization 
+        # can lead to dimension mismatches during fused attention operations, triggering index 
+        # bounds violations (i1 >= 0 && i1 < ne1) in ggml-cpu ops.
+        #
+        # This is a temporary workaround. For production use, consider upgrading to Q4_K_M 
+        # or Q5_K_M quantization levels where Flash Attention remains compatible.
+        #
+        # Therefore, `_flash_attn` should be set to `False` by default.
+        self._flash_attn = False
 
         self._model: any = None
 
@@ -39,6 +53,7 @@ class GLM4_9b_chat_GGUF(AbstractModel):
                 n_ctx=self._max_length,            # 上下文长度
                 n_gpu_layers=self._n_gpu_layers, # 将多少层卸载到GPU，-1表示全部卸载
                 chat_format="chatglm3",
+                flash_attn=self._flash_attn,
                 verbose=False                 # 是否打印详细日志
             )
         else:
@@ -49,6 +64,7 @@ class GLM4_9b_chat_GGUF(AbstractModel):
                 n_ctx=self._max_length,
                 n_gpu_layers=self._n_gpu_layers,
                 chat_format="chatglm3",
+                flash_attn=self._flash_attn,
                 verbose=False
             )
 

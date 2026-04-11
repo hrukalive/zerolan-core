@@ -14,3 +14,4 @@ class GLM4QuantizedModelConfig:
     max_length: int = 10000
     n_gpu_layers: int = -1
     filename: str = "glm-4-9b-chat.Q2_K.gguf"
+    flash_attn: bool = False
