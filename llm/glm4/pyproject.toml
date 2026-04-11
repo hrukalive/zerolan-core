@@ -24,8 +24,12 @@ dependencies = [
     "torch>=2.5.0",
     "torchvision>=0.20.0",
     "transformers>=4.46.0",
-    "llama-cpp-python==0.3.16"
     "zerolan-data",
+]
+
+[project.optional-dependencies]
+quantization = [
+    "llama-cpp-python==0.3.16"
 ]
 
 [tool.uv.sources]
