@@ -1,12 +1,12 @@
-from flask import Flask, jsonify, request, Response, stream_with_context
+from flask import Flask, request, Response, stream_with_context
 from loguru import logger
-from zerolan.data.pipeline.llm import LLMQuery, LLMPrediction
+from zerolan.data.pipeline.defense import DefenseQuery, DefensePrediction
 
 from common.abs_app import AbstractApplication
 from common.abs_model import AbstractModel
 
 
-class DenfenseLLMApplication(AbstractApplication):
+class DefenseLLMApplication(AbstractApplication):
 
     def __init__(self, model: AbstractModel, host: str, port: int):
         super().__init__(model, "llm")
@@ -23,8 +23,8 @@ class DenfenseLLMApplication(AbstractApplication):
         @self._app.route("/defense/predict", methods=["POST"])
         def handle_predict():
             llm_query = self._to_pipeline_format()
-            p: LLMPrediction = self.model.predict(llm_query)
-            logger.info(f'Model response: {p.response}')
+            p: DefensePrediction = self.model.predict(llm_query)
+            logger.info(f'Model response: {p.defense_result} {p.confidence}')
             return Response(
                 response=p.model_dump_json(),
                 status=200,
@@ -37,11 +37,11 @@ class DenfenseLLMApplication(AbstractApplication):
             # TODO: Will change in the later version.
             llm_query = self._to_pipeline_format()
 
-            def generate_output(q: LLMQuery):
+            def generate_output(q: DefenseQuery):
                 with self._app.app_context():
                     for p in self.model.stream_predict(q):
-                        p: LLMPrediction
-                        logger.info(f'Model response (stream): {p.response}')
+                        p: DefensePrediction
+                        logger.info(f'Model response (stream): {p.defense_result} {p.confidence}')
                         yield p.model_dump_json() + '\n'
 
             return Response(
@@ -50,10 +50,10 @@ class DenfenseLLMApplication(AbstractApplication):
                 headers={'Content-Type': 'application/json; charset=utf-8'}
             )
 
-    def _to_pipeline_format(self) -> LLMQuery:
+    def _to_pipeline_format(self) -> DefenseQuery:
         with self._app.app_context():
             logger.info('Query received: processing...')
             json_val = request.get_json()
-            llm_query = LLMQuery.model_validate(json_val)
-            logger.info(f'User Input {llm_query.text}')
+            llm_query = DefenseQuery.model_validate(json_val)
+            logger.info(f'User Input: {llm_query.text}')
             return llm_query

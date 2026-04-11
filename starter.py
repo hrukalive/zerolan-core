@@ -198,7 +198,7 @@ def vidcap_app():
 
 
 def defense_app():
-    from defense.app import DenfenseLLMApplication
+    from defense.app import DefenseLLMApplication
 
     defense_config = _config["Defense"]
     host, port = defense_config["host"], defense_config["port"]
@@ -210,10 +210,9 @@ def defense_app():
             from defense.deberta.model import DebertaPromptDefenseModel as Model
             from defense.deberta.config import DebertaPromptDefenseModelConfig as Config
             return Model(Config(**model_cfg))
-        
+
     defense = get_model()
-    app = DenfenseLLMApplication(
-        model=defense, host=host, port=port)
+    app = DefenseLLMApplication(model=defense, host=host, port=port)
     return app
 
 
@@ -242,7 +241,7 @@ def get_app(service):
 
 def run(service=None):
     service = args.service if service is None else service
-    print(service)
+    print(f"Starting service: {service}")
     app = get_app(service)
     app.run()
 
