@@ -76,8 +76,8 @@ def llm_app() -> AbstractApplication:
             from llm.glm4.config import GLM4ModelConfig as Config
             return Model(Config(**model_cfg))
         elif llm_id == "legraphista/glm-4-9b-chat-GGUF":
-            from llm.glm4.quantited_model import GLM4_9b_chat_GGUF as Model
-            from llm.glm4.config import GLM4QuantitedModelConfig as Config
+            from llm.glm4.quantized_model import GLM4_9b_chat_GGUF as Model
+            from llm.glm4.config import GLM4QuantizedModelConfig as Config
             return Model(Config(**model_cfg))
         elif llm_id in ["deepseek-ai/DeepSeek-R1-Distill-Llama-8B", "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B"]:
             from llm.deepseek.model import DeepSeekLLMModel as Model

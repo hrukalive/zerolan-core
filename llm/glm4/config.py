@@ -9,7 +9,7 @@ class GLM4ModelConfig:
 
 
 @dataclass
-class GLM4QuantitedModelConfig:
+class GLM4QuantizedModelConfig:
     model_path: str = "legraphista/glm-4-9b-chat-GGUF"
     max_length: int = 10000
     n_gpu_layers: int = -1

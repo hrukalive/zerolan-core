@@ -14,12 +14,12 @@ from zerolan.data.pipeline.llm import LLMQuery, LLMPrediction, Conversation, Rol
 
 from common.abs_model import AbstractModel
 from common.decorator import log_model_loading
-from llm.glm4.config import GLM4QuantitedModelConfig
+from llm.glm4.config import GLM4QuantizedModelConfig
 
 
 class GLM4_9b_chat_GGUF(AbstractModel):
 
-    def __init__(self, config: GLM4QuantitedModelConfig):
+    def __init__(self, config: GLM4QuantizedModelConfig):
         super().__init__()
         self.model_id = "legraphista/glm-4-9b-chat-GGUF"
         self._model_path = config.model_path
